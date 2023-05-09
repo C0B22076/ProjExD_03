@@ -151,7 +151,10 @@ def main():
     bg_img = pg.image.load("ex03/fig/pg_bg.jpg")
     font1 = pg.font.SysFont("UDデジタル教科書体", 400)  # フォントの設定
     font2 = pg.font.SysFont("UDデジタル教科書体", 100)  # スコアのフォント設定
+    font3 = pg.font.SysFont("UDデジタル教科書体", 470)  # クリアのフォント設定
+
     text1 = font1.render("Game Over", True, (255, 0, 0))  # テキストの設定
+    text3 = font3.render("Complete", True, (0, 255, 0))  #クリアテキストの設定
 
     score = 0
 
@@ -180,7 +183,14 @@ def main():
                 pg.display.update()
                 time.sleep(2)
                 return
-            
+        
+        if score >= 1:  # クリア表示
+            screen.blit(text3, (35,300))
+            bird.change_img(6, screen)
+            pg.display.update()
+            time.sleep(3)
+            return
+
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
 
