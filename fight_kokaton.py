@@ -149,9 +149,9 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex03/fig/pg_bg.jpg")
-    font1 = pg.font.SysFont("UDデジタル教科書体", 400)  # フォントの設定
-    font2 = pg.font.SysFont("UDデジタル教科書体", 100)  # スコアのフォント設定
-    font3 = pg.font.SysFont("UDデジタル教科書体", 470)  # クリアのフォント設定
+    font1 = pg.font.SysFont("UDデジタル教科書体", 390)  # フォントの設定
+    font2 = pg.font.SysFont("UDデジタル教科書体", 90)  # スコアのフォント設定
+    font3 = pg.font.SysFont("UDデジタル教科書体", 450)  # クリアのフォント設定
 
     text1 = font1.render("Game Over", True, (255, 0, 0))  # テキストの設定
     text3 = font3.render("Complete", True, (0, 255, 0))  #クリアテキストの設定
@@ -184,8 +184,8 @@ def main():
                 time.sleep(2)
                 return
         
-        if score >= 1:  # クリア表示
-            screen.blit(text3, (35,300))
+        if score >= 5:  # クリア表示
+            screen.blit(text3, (100,300))
             bird.change_img(6, screen)
             pg.display.update()
             time.sleep(3)
@@ -203,7 +203,7 @@ def main():
                     bird.change_img(6, screen)
                     score += 1
                     break
-        text2 = font2.render("Score:" + str(score), True, (0, 0, 0))
+        text2 = font2.render("Score:" + str(score), True, (0, 0, 0))  # スコア表示
         screen.blit(text2, (40,10))
         pg.display.update()
         clock.tick(1000)
