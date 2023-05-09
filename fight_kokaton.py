@@ -149,6 +149,11 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex03/fig/pg_bg.jpg")
+    font1 = pg.font.SysFont("UDデジタル教科書体", 400)  # フォントの設定
+    font2 = pg.font.SysFont("UDデジタル教科書体", 100)  # スコアのフォント設定
+    text1 = font1.render("Game Over", True, (255, 0, 0))  # テキストの設定
+
+    score = 0
 
     bird = Bird(3, (900, 400))
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
@@ -171,8 +176,9 @@ def main():
             if bird._rct.colliderect(bomb._rct):
                 # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
                 bird.change_img(8, screen)
+                screen.blit(text1, (40,300))
                 pg.display.update()
-                time.sleep(1)
+                time.sleep(2)
                 return
             
         key_lst = pg.key.get_pressed()
@@ -185,8 +191,10 @@ def main():
                     beam = None
                     del bombs[i]
                     bird.change_img(6, screen)
+                    score += 1
                     break
-
+        text2 = font2.render("Score:" + str(score), True, (0, 0, 0))
+        screen.blit(text2, (40,10))
         pg.display.update()
         clock.tick(1000)
 
